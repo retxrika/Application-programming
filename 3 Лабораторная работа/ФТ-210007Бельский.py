@@ -1,10 +1,12 @@
 import os
 
+# Выводит заголовок.
 def print_header():
     os.system('cls')
     print('ПРОГРАММА ШИФРОВАНИЯ И РАСШИФРОВКИ ШИФРА ЦЕЗАРЯ\n' +
           '===============================================\n')
 
+# Собирает данные пользователя.
 def get_data():
     print_header()
     str = input('Введите строку (латиница/кириллица): ')
@@ -17,12 +19,13 @@ def get_data():
 
         return (str, shift)
 
+# Выводит результат.
 def print_result(str):
     print_header()
     print("Готовая строка:", str)
 
 # Возвращает корректное значение в случае 
-# сдвига заходящего за пределы алфавита
+# сдвига заходящего за пределы алфавита.
 def get_correct_value(c, start_c, end_c, shift):
     while ord(c) + shift < ord(start_c):
         shift = shift + 1 + ord(end_c) - ord(start_c)
@@ -31,6 +34,7 @@ def get_correct_value(c, start_c, end_c, shift):
     
     return chr(ord(c) + shift)
 
+# Возвращает зашифрованную/расшифрованную строку.
 def get_encryption(str, shift):
     enc = []
     for c in str:
@@ -46,8 +50,11 @@ def get_encryption(str, shift):
             enc.append(c)
     return ''.join(enc)
 
+# Ввод пользователя строки и сдвига.
 str, shift = get_data()
+# Шифровка.
 result = get_encryption(str, shift)
+# Вывод результата.
 print_result(result)
 
 
